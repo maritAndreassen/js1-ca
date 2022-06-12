@@ -13,8 +13,8 @@ async function getCountries() {
       createHtml(country);
     });
   } catch (error) {
-    console.log("denne feila", error);
-    resultContainer.innerHTML = "An error occured";
+    console.log("Something went wrong", error);
+    resultContainer.innerHTML = "An error occured, please try again later.";
   }
 }
 
