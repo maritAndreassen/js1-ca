@@ -4,7 +4,47 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="styles/styles.css" rel="stylesheet" />
     <title>Contact form</title>
   </head>
-  <body></body>
+  <body>
+    <h2>Contact form</h2>
+    <form id="contactForm">
+      <div>
+        <label for="name"
+          >Name:
+          <input type="text" id="name" />
+        </label>
+        <div class="form-error" id="nameError">Name is required, please enter your name.</div>
+      </div>
+      <div>
+        <label for="subject"
+          >Subject:
+          <input type="text" id="subject" />
+        </label>
+        <div class="form-error" id="subjectError">
+          Must have a value with a minimum length of 10
+        </div>
+      </div>
+      <div>
+        <label for="email"
+          >E-mail:
+          <input type="text" id="email" />
+        </label>
+        <div class="form-error" id="emailError">Please insert a valid e-mail addresse</div>
+      </div>
+      <div>
+        <label for="address"
+          >Address:
+          <input type="text" id="address" />
+        </label>
+        <div class="form-error" id="addressError">
+          Must have a value with a minimum length of 25
+        </div>
+      </div>
+      <input class="submit-button" type="submit" value="Submit" />
+    </form>
+    <button onclick="location.href='/index.html'">Back to homepage</button>
+    <script src="js/formValidation.js"></script>
+  </body>
 </html>

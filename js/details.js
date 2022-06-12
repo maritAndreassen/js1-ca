@@ -11,11 +11,11 @@ async function getCountry() {
   try {
     const response = await fetch(url);
     const country = await response.json();
-    console.log("hey there", country);
+    console.log(country);
     createHtml(country);
   } catch (error) {
-    console.log("denne feila", error);
-    detailContainer.innerHTML = "An error occured";
+    console.log("Something went wrong", error);
+    detailContainer.innerHTML = "An error occured, please try again later.";
   }
 }
 
@@ -25,9 +25,9 @@ function createHtml(country) {
   title.innerHTML = `${countryName}`;
   detailContainer.innerHTML = `<h1>${countryName}<h1>
   <ul>
-   <li>Capital: ${country[0].area}</li>
+  <li>Official name: ${country[0].name.official}</li>
+   <li>Capital: ${country[0].capital}</li>
    <li>Population: ${country[0].population}</li>
-   <li>Currencies: ${country[0].startOfWeek}</li>
    <li>Timezone: ${country[0].timezones}</li>
  </ul>`;
 }
