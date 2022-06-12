@@ -11,7 +11,7 @@ async function getCountry() {
   try {
     const response = await fetch(url);
     const country = await response.json();
-    console.log(country);
+
     createHtml(country);
   } catch (error) {
     console.log("Something went wrong", error);
