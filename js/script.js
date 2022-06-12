@@ -1,24 +1,16 @@
-const json = "&fmt=json";
-const url = "http://musicbrainz.org/ws/2/artist/?query=artist" + json;
+const url = "https://restcountries.com/v3.1/region/europe/";
 
 const resultContainer = document.querySelector(".results");
 
-async function getArtists() {
+async function getCountries() {
   try {
     const response = await fetch(url);
-    const data = await response.json();
-    const artists = data.artists;
+    const country = await response.json();
 
-    console.log("Første data", data);
-    console.log("Første artists", artists);
     resultContainer.innerHTML = "";
 
-    artists.forEach(function (artist) {
-      if (artist.name === "[no artist]") {
-        artist.name = "no name";
-      }
-      console.log("IIIIIIIID", artist.id);
-      createHtml(artist);
+    country.forEach(function (country) {
+      createHtml(country);
     });
   } catch (error) {
     console.log("denne feila", error);
@@ -26,15 +18,17 @@ async function getArtists() {
   }
 }
 
-getArtists();
+getCountries();
 
-function createHtml(artist) {
+function createHtml(country) {
   resultContainer.innerHTML += `<section class="result">
        <ul>
-         <li>Artist name: ${artist.name}</li>
-          <li>Score: ${artist.score}</li>
-          <li>Type: ${artist.type}</li>
+         <li><b>Country name:</b> ${country.name.common}</li>
+          <li><b>Capital:</b> ${country.capital}</li>
+          <li><b>Language(s):</b> ${Object.values(country.languages)}</li>
         </ul>
-        <button onclick="location.href='/details.html?id=${artist.id}'">View details</button>
+        <button onclick="location.href='/details.html?name=${
+          country.name.common
+        }'">View details</button>
       </section>`;
 }

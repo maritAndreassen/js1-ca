@@ -1,30 +1,33 @@
 const detailContainer = document.querySelector(".details");
+const title = document.getElementById("title");
 
 const queryString = document.location.search;
 const params = new URLSearchParams(queryString);
-const id = params.get("id");
-const json = "&fmt=json";
-console.log(id);
+const countryName = params.get("name");
 
-const url = "http://musicbrainz.org/ws/2/artist/?query=artist:artists:" + id + json;
+const url = "https://restcountries.com/v3.1/name/" + countryName;
 
-async function getArtist() {
+async function getCountry() {
   try {
     const response = await fetch(url);
-    const data = await response.json();
-    const artist = data.artists;
-
-    console.log("Look at this", artist.id);
-    createHtml(artist);
+    const country = await response.json();
+    console.log("hey there", country);
+    createHtml(country);
   } catch (error) {
     console.log("denne feila", error);
     detailContainer.innerHTML = "An error occured";
   }
 }
 
-getArtist();
+getCountry();
 
-function createHtml(artist) {
-  detailContainer.innerHTML = `<h1>${artist}<h1>`;
-  console.log(artist.id);
+function createHtml(country) {
+  title.innerHTML = `${countryName}`;
+  detailContainer.innerHTML = `<h1>${countryName}<h1>
+  <ul>
+   <li>Capital: ${country[0].area}</li>
+   <li>Population: ${country[0].population}</li>
+   <li>Currencies: ${country[0].startOfWeek}</li>
+   <li>Timezone: ${country[0].timezones}</li>
+ </ul>`;
 }
